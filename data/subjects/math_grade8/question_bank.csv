@@ -1,0 +1,9 @@
+id,skill_id,question_text,option_a,option_b,option_c,option_d,correct_answer,difficulty,explanation
+Q1,SKILL_INT,Tính giá trị: (-12) + 5, -7, 7, -17, 17, A, 1, "(-12) + 5 = -7"
+Q2,SKILL_INT,Tính giá trị: (-3) * (-4), -12, 12, -7, 7, B, 1, "Tích của 2 số nguyên âm là số dương: 12"
+Q3,SKILL_FRAC,Rút gọn phân số 18/24, 2/3, 3/4, 4/3, 1/2, B, 2, "Chia cả tử và mẫu cho 6 ta được 3/4"
+Q4,SKILL_FRAC,Tính: 1/3 + 1/6, 1/9, 2/9, 1/2, 2/3, C, 2, "Quy đồng mẫu 6: 2/6 + 1/6 = 3/6 = 1/2"
+Q5,SKILL_EQ1,Tìm x biết: 2x - 6 = 0, x = -3, x = 3, x = 6, x = 0, B, 2, "2x = 6 <=> x = 3"
+Q6,SKILL_EQ1,Tìm x biết: 3x + 9 = 0, x = 3, x = -3, x = 9, x = -9, B, 2, "3x = -9 <=> x = -3"
+Q7,SKILL_EQ2,Nghiệm của phương trình x^2 - 4 = 0 là:, x = 2, x = -2, x = 2 hoặc x = -2, Vô nghiệm, C, 3, "(x-2)(x+2) = 0 <=> x = 2 hoặc x = -2"
+Q8,SKILL_EQ2,Phương trình x^2 - 5x + 6 = 0 có tập nghiệm là:, "{2; 3}", "{-2; -3}", "{1; 6}", "{-1; -6}", A, 3, "(x - 2)(x - 3) = 0"

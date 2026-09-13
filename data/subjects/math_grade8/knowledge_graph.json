@@ -1,0 +1,41 @@
+{
+  "subject": "math_grade8",
+  "title": "Toán học lớp 8",
+  "skills": [
+    {
+      "id": "SKILL_INT",
+      "name": "Số nguyên & Phép tính cơ bản",
+      "description": "Các phép tính cộng trừ nhân chia trên tập số nguyên",
+      "prerequisites": [],
+      "difficulty": 1
+    },
+    {
+      "id": "SKILL_FRAC",
+      "name": "Phân số & Phân thức đại số",
+      "description": "Rút gọn, quy đồng và các phép toán phân thức",
+      "prerequisites": ["SKILL_INT"],
+      "difficulty": 2
+    },
+    {
+      "id": "SKILL_EQ1",
+      "name": "Phương trình bậc nhất 1 ẩn",
+      "description": "Phương trình dạng ax + b = 0 và phương trình đưa về dạng đó",
+      "prerequisites": ["SKILL_FRAC"],
+      "difficulty": 2
+    },
+    {
+      "id": "SKILL_EQ2",
+      "name": "Phương trình bậc hai & Phân tích nhân tử",
+      "description": "Phân tích đa thức thành nhân tử, giải phương trình bậc hai cơ bản",
+      "prerequisites": ["SKILL_EQ1"],
+      "difficulty": 3
+    },
+    {
+      "id": "SKILL_SYS_EQ",
+      "name": "Hệ phương trình bậc nhất hai ẩn",
+      "description": "Phương pháp thế và cộng đại số",
+      "prerequisites": ["SKILL_EQ1"],
+      "difficulty": 3
+    }
+  ]
+}

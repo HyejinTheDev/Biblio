@@ -1,0 +1,27 @@
+{
+  "subject": "physics_grade8",
+  "title": "Vật lý lớp 8",
+  "skills": [
+    {
+      "id": "SKILL_MOTION",
+      "name": "Chuyển động cơ học & Vận tốc",
+      "description": "Khái niệm vận tốc, công thức v = s / t",
+      "prerequisites": [],
+      "difficulty": 1
+    },
+    {
+      "id": "SKILL_FORCE",
+      "name": "Lực & Biểu diễn lực",
+      "description": "Đặc trưng của lực, quán tính, lực ma sát",
+      "prerequisites": ["SKILL_MOTION"],
+      "difficulty": 2
+    },
+    {
+      "id": "SKILL_PRESSURE",
+      "name": "Áp suất & Áp suất chất lỏng",
+      "description": "Khái niệm áp suất, công thức p = F / S, bình thông nhau",
+      "prerequisites": ["SKILL_FORCE"],
+      "difficulty": 3
+    }
+  ]
+}
