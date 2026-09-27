@@ -1,0 +1,396 @@
+{
+  "subject": "ai_vinuni",
+  "title": "Chinh Phục AI Thực Chiến VinUni",
+  "description": "Lộ trình luyện thi và trang bị toàn diện kiến thức Toán, Python, Machine Learning, Deep Learning và GenAI",
+  "phases": [
+    {
+      "id": "phase_1",
+      "number": 1,
+      "title": "Phase 1: Python Mastery & Math Foundations for AI",
+      "description": "Nắm vững bản chất toán học (Đại số tuyến tính, Giải tích đa biến, Xác suất) và kỹ năng lập trình Python/NumPy tối ưu hóa hiệu năng."
+    },
+    {
+      "id": "phase_2",
+      "number": 2,
+      "title": "Phase 2: Classical Machine Learning & Feature Engineering",
+      "description": "Thành thạo các thuật toán ML kinh điển (Tree, Ensembles, XGBoost, SVM) và kỹ thuật phân tích xử lý dữ liệu cạnh tranh."
+    },
+    {
+      "id": "phase_3",
+      "number": 3,
+      "title": "Phase 3: Deep Learning Architecture & PyTorch",
+      "description": "Xây dựng mạng nơ-ron từ đầu, thuần thục PyTorch Autograd, CNN, LSTM và giải mã cơ chế Self-Attention trong Transformer."
+    },
+    {
+      "id": "phase_4",
+      "number": 4,
+      "title": "Phase 4: GenAI, RAG, AI Agent & MLOps VinUni",
+      "description": "Đỉnh cao thực chiến: Xây dựng hệ sinh thái RAG, Vector Search, ReAct AI Agent và tối ưu hóa phục vụ sản phẩm thực tế."
+    }
+  ],
+  "skills": [
+    {
+      "id": "STAGE_1_1",
+      "stage_code": "1-1",
+      "phase_id": "phase_1",
+      "name": "Python Idioms & Data Structures",
+      "description": "List/Dict comprehensions, Generators, Iterators, Lambda, Decorators trong Python tối ưu.",
+      "prerequisites": [],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_1_2",
+      "stage_code": "1-2",
+      "phase_id": "phase_1",
+      "name": "OOP & Clean Code cho ML",
+      "description": "Thiết kế Class, Kế thừa, Magic methods (__call__, __len__, __getitem__) như trong PyTorch Dataset.",
+      "prerequisites": ["STAGE_1_1"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_1_3",
+      "stage_code": "1-3",
+      "phase_id": "phase_1",
+      "name": "NumPy Vectorization & Matrix Algebra",
+      "description": "Broadcasting rules, phép nhân ma trận Dot vs Hadamard, thao tác Reshape và Slicing đa chiều.",
+      "prerequisites": ["STAGE_1_2"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_1_4",
+      "stage_code": "1-4",
+      "phase_id": "phase_1",
+      "name": "Pandas Data Wrangling & Feature Prep",
+      "description": "GroupBy, Merge, Pivot, xử lý Outliers, Missing Value Imputation và tối ưu RAM bộ nhớ DataFrame.",
+      "prerequisites": ["STAGE_1_3"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_1_5",
+      "stage_code": "1-5",
+      "phase_id": "phase_1",
+      "name": "Đại Số Tuyến Tính Cho AI",
+      "description": "Không gian vector, Tích vô hướng, Ma trận trực giao, Eigenvalues, Eigenvectors và SVD (Singular Value Decomposition).",
+      "prerequisites": ["STAGE_1_3"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_1_6",
+      "stage_code": "1-6",
+      "phase_id": "phase_1",
+      "name": "Giải Tích Đa Biến & Vector Calculus",
+      "description": "Đạo hàm riêng phần, Gradient vector, Ma trận Jacobian, Ma trận Hessian và quy tắc chuỗi Chain Rule đa biến.",
+      "prerequisites": ["STAGE_1_5"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_1_7",
+      "stage_code": "1-7",
+      "phase_id": "phase_1",
+      "name": "Xác Suất Thống Kê & Bayesian Inference",
+      "description": "Định lý Bayes, Phân phối chuẩn, Kỳ vọng, Phương sai, Ước lượng hợp lý cực đại (MLE) và Hậu nghiệm cực đại (MAP).",
+      "prerequisites": ["STAGE_1_6"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_1_8",
+      "stage_code": "1-8",
+      "phase_id": "phase_1",
+      "name": "Thuật Toán Tối Ưu Hóa (Optimization)",
+      "description": "Bản chất toán học của Gradient Descent, Stochastic Gradient Descent (SGD), Momentum, RMSProp và Adam Optimizer.",
+      "prerequisites": ["STAGE_1_6"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_1_9",
+      "stage_code": "1-9",
+      "phase_id": "phase_1",
+      "name": "Trực Quan Hóa & Exploratory Data Analysis (EDA)",
+      "description": "Phân tích phân phối dữ liệu, Ma trận tương quan Correlation Matrix, Heatmap, Pairplot với Matplotlib/Seaborn.",
+      "prerequisites": ["STAGE_1_4"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_1_10",
+      "stage_code": "1-10",
+      "phase_id": "phase_1",
+      "name": "[BOSS ẢI] Linear & Logistic Regression từ Đầu",
+      "description": "Tự tay viết class LinearRegression và LogisticRegression hoàn toàn bằng NumPy từ công thức đạo hàm hàm mất mát.",
+      "prerequisites": ["STAGE_1_7", "STAGE_1_8"],
+      "is_boss": true
+    },
+
+    {
+      "id": "STAGE_2_1",
+      "stage_code": "2-1",
+      "phase_id": "phase_2",
+      "name": "Data Preprocessing & Scaling",
+      "description": "StandardScaler vs MinMaxScaler, RobustScaler, One-Hot Encoding, Target Encoding và Data Leakage.",
+      "prerequisites": ["STAGE_1_10"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_2_2",
+      "stage_code": "2-2",
+      "phase_id": "phase_2",
+      "name": "K-Nearest Neighbors & Metrics",
+      "description": "Khoảng cách Euclidean, Manhattan, Cosine Similarity và Lời nguyền số chiều (Curse of Dimensionality).",
+      "prerequisites": ["STAGE_2_1"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_2_3",
+      "stage_code": "2-3",
+      "phase_id": "phase_2",
+      "name": "Decision Trees: Entropy & Gini",
+      "description": "Tiêu chuẩn chia nhánh: Information Gain, Entropy, Gini Impurity, Pruning chống Overfitting.",
+      "prerequisites": ["STAGE_2_1"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_2_4",
+      "stage_code": "2-4",
+      "phase_id": "phase_2",
+      "name": "Random Forest & Bagging Ensembles",
+      "description": "Bootstrap Aggregation, Out-of-Bag (OOB) error, Feature Importance, Giảm phương sai (Variance Reduction).",
+      "prerequisites": ["STAGE_2_3"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_2_5",
+      "stage_code": "2-5",
+      "phase_id": "phase_2",
+      "name": "Gradient Boosting (XGBoost / LightGBM)",
+      "description": "Thuật toán học gia tăng sai số (Residuals), Second-order Taylor expansion trong XGBoost, Histogram-based splits.",
+      "prerequisites": ["STAGE_2_4"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_2_6",
+      "stage_code": "2-6",
+      "phase_id": "phase_2",
+      "name": "Support Vector Machines (SVM)",
+      "description": "Hyperplane tối đa hóa lề (Margin), Hàm mục tiêu đối ngẫu Lagrange, Kernel Trick (RBF, Polynomial).",
+      "prerequisites": ["STAGE_2_2"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_2_7",
+      "stage_code": "2-7",
+      "phase_id": "phase_2",
+      "name": "K-Means & Unsupervised Clustering",
+      "description": "Thuật toán K-Means, Phương pháp Elbow, Silhouette Score, Khởi tạo K-Means++ và Phân cụm phân cấp.",
+      "prerequisites": ["STAGE_2_2"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_2_8",
+      "stage_code": "2-8",
+      "phase_id": "phase_2",
+      "name": "Dimensionality Reduction: PCA & t-SNE",
+      "description": "Ma trận hiệp phương sai Covariance Matrix, Chiếu dữ liệu lên các thành phần chính Principal Components.",
+      "prerequisites": ["STAGE_1_5", "STAGE_2_7"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_2_9",
+      "stage_code": "2-9",
+      "phase_id": "phase_2",
+      "name": "Model Evaluation: ROC-AUC & PR-AUC",
+      "description": "K-Fold Cross-Validation, Stratified Split, Confusion Matrix, Precision-Recall Curve khi dữ liệu lệch lớp.",
+      "prerequisites": ["STAGE_2_5"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_2_10",
+      "stage_code": "2-10",
+      "phase_id": "phase_2",
+      "name": "[BOSS ẢI] Pipeline Cạnh Tranh Kaggle ML",
+      "description": "Xây dựng toàn diện Pipeline gồm Feature Engineering, Hyperparameter Tuning (Optuna) và Stacking Ensembles.",
+      "prerequisites": ["STAGE_2_5", "STAGE_2_9"],
+      "is_boss": true
+    },
+
+    {
+      "id": "STAGE_3_1",
+      "stage_code": "3-1",
+      "phase_id": "phase_3",
+      "name": "Kiến Trúc Multi-Layer Perceptron (MLP)",
+      "description": "Mạng nơ-ron truyền thẳng, Hàm kích hoạt Phi tuyến tính (Sigmoid, Tanh, ReLU, LeakyReLU, GELU).",
+      "prerequisites": ["STAGE_1_10"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_3_2",
+      "stage_code": "3-2",
+      "phase_id": "phase_3",
+      "name": "Thuật Toán Backpropagation Toán Học",
+      "description": "Lan truyền ngược đạo hàm theo quy tắc chuỗi, biểu diễn dạng Computational Graph và tính toán Gradient ma trận.",
+      "prerequisites": ["STAGE_3_1", "STAGE_1_6"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_3_3",
+      "stage_code": "3-3",
+      "phase_id": "phase_3",
+      "name": "PyTorch Core: Tensor & Autograd",
+      "description": "nn.Module, Tensor requires_grad, backward(), torch.no_grad(), tùy biến Custom Dataset và DataLoader.",
+      "prerequisites": ["STAGE_3_2"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_3_4",
+      "stage_code": "3-4",
+      "phase_id": "phase_3",
+      "name": "Chống Overfitting Trong Deep Learning",
+      "description": "Cơ chế toán học của Dropout, Batch Normalization (Train vs Eval mode), Layer Normalization và Weight Decay.",
+      "prerequisites": ["STAGE_3_3"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_3_5",
+      "stage_code": "3-5",
+      "phase_id": "phase_3",
+      "name": "Convolutional Neural Networks (CNN)",
+      "description": "Toán tích chập 2D (Kernel, Stride, Padding), Receptive Field, Feature Maps và kiến trúc ResNet Skip Connection.",
+      "prerequisites": ["STAGE_3_4"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_3_6",
+      "stage_code": "3-6",
+      "phase_id": "phase_3",
+      "name": "Mô Hình Xử Lý Chuỗi: RNN & LSTM",
+      "description": "Vấn đề Vanishing/Exploding Gradient trong chuỗi dài, Cấu tạo các cổng Forget, Input, Output gate trong LSTM cell.",
+      "prerequisites": ["STAGE_3_4"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_3_7",
+      "stage_code": "3-7",
+      "phase_id": "phase_3",
+      "name": "Transformer: Scaled Dot-Product Attention",
+      "description": "Toán học của Attention: Query, Key, Value, công thức Softmax(QK^T / sqrt(d_k)) * V và vai trò hệ số chia căn d_k.",
+      "prerequisites": ["STAGE_3_6"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_3_8",
+      "stage_code": "3-8",
+      "phase_id": "phase_3",
+      "name": "Multi-Head Attention & Positional Encoding",
+      "description": "Chiếu không gian đa đầu biểu diễn, Sinusoidal Positional Encoding vs Learned RoPE (Rotary Position Embedding).",
+      "prerequisites": ["STAGE_3_7"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_3_9",
+      "stage_code": "3-9",
+      "phase_id": "phase_3",
+      "name": "Chiến Lược Fine-Tuning & Transfer Learning",
+      "description": "Freeze backbone weights, Learning rate warm-up, Scheduler (Cosine Annealing) và kỹ thuật LoRA / PEFT cơ bản.",
+      "prerequisites": ["STAGE_3_8"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_3_10",
+      "stage_code": "3-10",
+      "phase_id": "phase_3",
+      "name": "[BOSS ẢI] Tự Viết Transformer Block Bằng PyTorch",
+      "description": "Tự code hoàn chỉnh MultiHeadAttention class, FeedForward layer và Residual Connection thuần túy trong PyTorch.",
+      "prerequisites": ["STAGE_3_8"],
+      "is_boss": true
+    },
+
+    {
+      "id": "STAGE_4_1",
+      "stage_code": "4-1",
+      "phase_id": "phase_4",
+      "name": "Vector Embeddings & Sentence-Transformers",
+      "description": "Bản chất biểu diễn ngữ nghĩa không gian vector, Contrastive Loss, Cosine vs Dot Product similarity.",
+      "prerequisites": ["STAGE_3_10"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_4_2",
+      "stage_code": "4-2",
+      "phase_id": "phase_4",
+      "name": "Vector Database (Qdrant) & HNSW Indexing",
+      "description": "Cơ chế tìm kiếm láng giềng gần đúng Approximate Nearest Neighbors (ANN), Đồ thị HNSW, Collections & Payload filtering.",
+      "prerequisites": ["STAGE_4_1"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_4_3",
+      "stage_code": "4-3",
+      "phase_id": "phase_4",
+      "name": "Advanced Chunking & Context Ingestion",
+      "description": "Semantic Chunking, Recursive Character Splitting, Tránh phân mảnh ngữ nghĩa và Quản lý Metadata tài liệu.",
+      "prerequisites": ["STAGE_4_2"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_4_4",
+      "stage_code": "4-4",
+      "phase_id": "phase_4",
+      "name": "Hybrid Search & Cross-Encoder Reranking",
+      "description": "Kết hợp BM25 (Keyword Search) với Dense Vector Search bằng Reciprocal Rank Fusion (RRF), Rerank bằng Cross-Encoder.",
+      "prerequisites": ["STAGE_4_3"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_4_5",
+      "stage_code": "4-5",
+      "phase_id": "phase_4",
+      "name": "Prompt Engineering & In-Context Learning",
+      "description": "Chain-of-Thought (CoT), Few-Shot Prompting, Tối ưu cấu trúc System Prompt chống Jailbreak và Hallucination.",
+      "prerequisites": ["STAGE_4_4"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_4_6",
+      "stage_code": "4-6",
+      "phase_id": "phase_4",
+      "name": "LLM Function Calling & Tool Execution",
+      "description": "Khai báo schema JSON Tools, cách LLM trả về Function Call arguments và cơ chế inject kết quả tool vào context.",
+      "prerequisites": ["STAGE_4_5"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_4_7",
+      "stage_code": "4-7",
+      "phase_id": "phase_4",
+      "name": "Agent Architecture: ReAct & State Graph",
+      "description": "Chu trình Reasoning - Action - Observation (ReAct Loop), Thiết kế Finite State Machine và quản lý bộ nhớ đàm thoại.",
+      "prerequisites": ["STAGE_4_6"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_4_8",
+      "stage_code": "4-8",
+      "phase_id": "phase_4",
+      "name": "RAG Evaluation Framework (RAGAS)",
+      "description": "Đo lường định lượng: Faithfulness (độ trung thực), Answer Relevance, Context Recall & Precision không cần ground truth.",
+      "prerequisites": ["STAGE_4_4"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_4_9",
+      "stage_code": "4-9",
+      "phase_id": "phase_4",
+      "name": "MLOps, Dockerization & Serving Optimization",
+      "description": "Đóng gói Docker Compose, FastAPI Async IO, Redis Caching, Streaming responses và đo độ trễ Latency/P99.",
+      "prerequisites": ["STAGE_4_7"],
+      "is_boss": false
+    },
+    {
+      "id": "STAGE_4_10",
+      "stage_code": "4-10",
+      "phase_id": "phase_4",
+      "name": "[BOSS CUỐI VINUNI] Adaptive Autonomous AI System",
+      "description": "Bảo vệ hệ thống AI hoàn chỉnh: Kết hợp Knowledge Tracing real-time, Knowledge Graph truy vết và RAG Autonomous Agent.",
+      "prerequisites": ["STAGE_4_8", "STAGE_4_9"],
+      "is_boss": true
+    }
+  ]
+}

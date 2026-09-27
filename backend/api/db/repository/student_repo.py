@@ -22,13 +22,26 @@ class StudentRepository:
             await self.session.refresh(student)
         return student
 
-    async def get_all_skill_masteries(self, student_id: str) -> Dict[str, float]:
+    async def get_all_skill_masteries(self, student_id: str) -> Dict[str, Dict]:
         query = select(StudentSkillMastery).where(StudentSkillMastery.student_id == student_id)
         result = await self.session.execute(query)
         records = result.scalars().all()
-        return {r.skill_id: r.mastery_prob for r in records}
+        return {
+            r.skill_id: {
+                "mastery_prob": r.mastery_prob,
+                "stars_earned": r.stars_earned,
+                "highest_difficulty": r.highest_difficulty
+            } for r in records
+        }
 
-    async def update_skill_mastery(self, student_id: str, skill_id: str, mastery_prob: float) -> None:
+    async def update_skill_mastery(
+        self,
+        student_id: str,
+        skill_id: str,
+        mastery_prob: float,
+        stars: int = 0,
+        difficulty: str = "none"
+    ) -> None:
         query = select(StudentSkillMastery).where(
             StudentSkillMastery.student_id == student_id,
             StudentSkillMastery.skill_id == skill_id
@@ -37,10 +50,31 @@ class StudentRepository:
         record = result.scalars().first()
         if record:
             record.mastery_prob = mastery_prob
+            if stars > record.stars_earned:
+                record.stars_earned = stars
+            if difficulty != "none":
+                record.highest_difficulty = difficulty
         else:
-            record = StudentSkillMastery(student_id=student_id, skill_id=skill_id, mastery_prob=mastery_prob)
+            record = StudentSkillMastery(
+                student_id=student_id,
+                skill_id=skill_id,
+                mastery_prob=mastery_prob,
+                stars_earned=stars,
+                highest_difficulty=difficulty
+            )
             self.session.add(record)
         await self.session.commit()
+
+    async def add_exp_and_stars(self, student_id: str, exp_gain: int, stars_gain: int) -> Student:
+        student = await self.get_student(student_id)
+        if student:
+            student.exp += exp_gain
+            student.total_stars += stars_gain
+            # Level calculation: every 500 EXP is 1 level
+            student.level = max(1, 1 + (student.exp // 500))
+            await self.session.commit()
+            await self.session.refresh(student)
+        return student
 
     async def record_response(self, student_id: str, question_id: str, skill_id: str,
                               selected_option: str, is_correct: bool, response_time_sec: float = 0.0) -> StudentResponse:

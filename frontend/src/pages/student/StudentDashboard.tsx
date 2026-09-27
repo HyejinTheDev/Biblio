@@ -1,79 +1,135 @@
-import React from 'react';
-import { useStudentState } from '../../hooks/useStudentState';
-import { KnowledgeGraph } from '../../components/knowledge-graph/KnowledgeGraph';
-import { ProgressBar } from '../../components/dashboard/ProgressBar';
+import React, { useState, useEffect, useCallback } from 'react';
+import { studentApi } from '../../api/studentApi';
+import { AdventureMapData, StageNodeData, DifficultyTier } from '../../types/skill';
+import { GamerProfileHeader } from '../../components/game/GamerProfileHeader';
+import { PhaseSelector } from '../../components/game/PhaseSelector';
+import { AdventureMap } from '../../components/game/AdventureMap';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
-import { Button } from '../../components/common/Button';
-import { SkillNodeData } from '../../types/skill';
 
-export const StudentDashboard: React.FC = () => {
+interface StudentDashboardProps {
+  onStartStageBattle?: (stage: StageNodeData, difficulty: DifficultyTier) => void;
+}
+
+export const StudentDashboard: React.FC<StudentDashboardProps> = ({ onStartStageBattle }) => {
   const studentId = 'student_001';
-  const { state, loading, error } = useStudentState(studentId);
+  const [mapData, setMapData] = useState<AdventureMapData | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [selectedPhaseId, setSelectedPhaseId] = useState<string>('phase_1');
 
-  // Mock skills data combined with student masteries
-  const skills: SkillNodeData[] = [
-    {
-      id: 'SKILL_INT',
-      name: 'Số nguyên & Phép tính cơ bản',
-      description: 'Cộng trừ nhân chia số nguyên',
-      prerequisites: [],
-      difficulty: 1,
-      mastery_prob: state?.mastery_map['SKILL_INT'] ?? 0.85,
-      status: (state?.mastery_map['SKILL_INT'] ?? 0.85) >= 0.75 ? 'mastered' : 'average',
-    },
-    {
-      id: 'SKILL_FRAC',
-      name: 'Phân số & Phân thức đại số',
-      description: 'Rút gọn, quy đồng phân số',
-      prerequisites: ['SKILL_INT'],
-      difficulty: 2,
-      mastery_prob: state?.mastery_map['SKILL_FRAC'] ?? 0.35,
-      status: (state?.mastery_map['SKILL_FRAC'] ?? 0.35) < 0.45 ? 'weak' : 'average',
-    },
-    {
-      id: 'SKILL_EQ1',
-      name: 'Phương trình bậc nhất 1 ẩn',
-      description: 'Giải phương trình ax + b = 0',
-      prerequisites: ['SKILL_FRAC'],
-      difficulty: 2,
-      mastery_prob: state?.mastery_map['SKILL_EQ1'] ?? 0.5,
-      status: 'average',
-    },
-  ];
+  const fetchMapData = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await studentApi.getAdventureMap(studentId);
+      setMapData(data);
+      if (data.phases.length > 0 && !selectedPhaseId) {
+        setSelectedPhaseId(data.phases[0].id);
+      }
+    } catch (err: any) {
+      setError(err.message || 'Lỗi tải bản đồ vượt ải');
+    } finally {
+      setLoading(false);
+    }
+  }, [studentId, selectedPhaseId]);
 
-  if (loading) return <LoadingSpinner size="lg" />;
-  if (error) return <div className="p-8 text-center text-rose-600">Lỗi: {error}</div>;
+  useEffect(() => {
+    fetchMapData();
+  }, [fetchMapData]);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col items-center justify-center py-24 text-white">
+        <LoadingSpinner size="lg" />
+        <p className="mt-4 text-sm text-slate-400 font-mono">Đang tải Bản đồ AI Thực Chiến VinUni...</p>
+      </div>
+    );
+  }
+
+  if (error || !mapData) {
+    return (
+      <div className="max-w-4xl mx-auto p-8 text-center bg-slate-900 border border-rose-800 rounded-3xl text-rose-400">
+        <p className="font-bold text-lg mb-2">Không thể tải dữ liệu bản đồ</p>
+        <p className="text-sm text-slate-400 mb-4">{error}</p>
+        <button
+          onClick={fetchMapData}
+          className="px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-bold hover:bg-indigo-500"
+        >
+          Thử Lại
+        </button>
+      </div>
+    );
+  }
+
+  const currentPhase =
+    mapData.phases.find((p) => p.id === selectedPhaseId) || mapData.phases[0];
+
+  const handleSelectStageBattle = (stage: StageNodeData, difficulty: DifficultyTier) => {
+    if (onStartStageBattle) {
+      onStartStageBattle(stage, difficulty);
+    }
+  };
 
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-6">
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-        <div>
-          <h1 className="text-2xl font-bold text-slate-900">Lộ trình học của {state?.name || 'Học sinh'}</h1>
-          <p className="text-sm text-slate-500">Môn học: Toán học Lớp 8 — Thích ứng cá nhân hóa</p>
-        </div>
-        <div className="w-full md:w-72">
-          <ProgressBar progress={state?.overall_progress || 65} />
-        </div>
-      </header>
+    <div className="max-w-7xl mx-auto px-4 md:px-6 space-y-8">
+      {/* RPG Gamer Profile Header */}
+      <GamerProfileHeader
+        profile={mapData.gamer_profile}
+        overallProgress={mapData.overall_progress}
+      />
 
-      {/* Recommended Next Action Banner */}
-      <div className="bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-100 rounded-2xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <div className="flex items-center gap-2 text-indigo-700 font-semibold text-sm mb-1">
-            <span>📌 Gợi ý tiếp theo từ AI Agent</span>
+      {/* AI Recommendation Banner */}
+      <div className="bg-gradient-to-r from-indigo-950 via-slate-900 to-purple-950 border border-indigo-500/30 rounded-3xl p-6 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2 text-indigo-400 text-xs font-bold uppercase tracking-wider">
+            <span>✨ AI Agent VinUni Đề Xuất Chiến Thuật</span>
           </div>
-          <p className="text-slate-800 text-base">
-            Hệ thống nhận diện bạn nên <strong className="text-indigo-900 font-semibold">ôn lại Phân số & Phân thức</strong> trước khi giải phương trình phức tạp hơn.
+          <p className="text-slate-200 text-sm leading-relaxed">
+            Bạn đang ở <strong className="text-white">{currentPhase.title}</strong>. 
+            Để đỗ vòng tuyển chọn VinUni, hãy tập trung thử thách ở cấp độ <strong className="text-amber-400">Trung bình</strong> và <strong className="text-rose-400">Địa ngục</strong> để làm quen bẫy phỏng vấn!
           </p>
         </div>
-        <Button variant="primary" size="md">
-          Bắt đầu luyện tập →
-        </Button>
+
+        <button
+          onClick={() => {
+            const firstActive = currentPhase.stages.find((s) => s.status === 'active') || currentPhase.stages[0];
+            handleSelectStageBattle(firstActive, 'normal');
+          }}
+          className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-lg shadow-indigo-600/30 whitespace-nowrap transition-all"
+        >
+          Chiến Ải Tiếp Theo ⚔️
+        </button>
       </div>
 
-      {/* Interactive Knowledge Graph */}
-      <section className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
-        <KnowledgeGraph skills={skills} />
+      {/* Phase Selection Tabs */}
+      <section className="space-y-3">
+        <div className="flex items-center justify-between">
+          <h2 className="text-base font-bold text-white uppercase tracking-wider">
+            Chọn Giai Đoạn (Phases):
+          </h2>
+          <span className="text-xs text-slate-400">4 Giai đoạn — 40 Ải thực chiến</span>
+        </div>
+
+        <PhaseSelector
+          phases={mapData.phases}
+          selectedPhaseId={selectedPhaseId}
+          onSelectPhase={setSelectedPhaseId}
+        />
+      </section>
+
+      {/* Main Adventure Stage Road */}
+      <section className="space-y-3">
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-xl font-black text-white">{currentPhase.title}</h2>
+            <p className="text-xs text-slate-400 mt-0.5">{currentPhase.description}</p>
+          </div>
+        </div>
+
+        <AdventureMap
+          stages={currentPhase.stages}
+          onSelectStageBattle={handleSelectStageBattle}
+        />
       </section>
     </div>
   );

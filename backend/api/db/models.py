@@ -10,6 +10,10 @@ class Student(Base):
     id = Column(String(50), primary_key=True, index=True)
     name = Column(String(100), nullable=False)
     grade = Column(Integer, default=8)
+    level = Column(Integer, default=1)
+    exp = Column(Integer, default=0)
+    streak_days = Column(Integer, default=1)
+    total_stars = Column(Integer, default=0)
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
     masteries = relationship("StudentSkillMastery", back_populates="student")
@@ -23,6 +27,8 @@ class StudentSkillMastery(Base):
     student_id = Column(String(50), ForeignKey("students.id"), nullable=False, index=True)
     skill_id = Column(String(50), nullable=False, index=True)
     mastery_prob = Column(Float, default=0.1)  # P(L) in BKT
+    stars_earned = Column(Integer, default=0)  # 0, 1, 2, 3 stars
+    highest_difficulty = Column(String(20), default="none")  # none, normal, hard, hell
     updated_at = Column(DateTime, default=datetime.datetime.utcnow, onupdate=datetime.datetime.utcnow)
 
     student = relationship("Student", back_populates="masteries")
