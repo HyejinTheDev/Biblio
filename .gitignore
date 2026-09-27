@@ -39,6 +39,8 @@ dist-ssr/
 *.local
 
 # Database & Vector DB
+*.db
+*.sqlite
 postgres_data/
 redis_data/
 qdrant_storage/

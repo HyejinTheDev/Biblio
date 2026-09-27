@@ -2,13 +2,23 @@
 Deep Knowledge Tracing (DKT) - Piech et al. 2015.
 Uses LSTM/RNN to model the sequence of student exercise responses over time.
 """
-import torch
-import torch.nn as nn
-from typing import Tuple
+try:
+    import torch
+    import torch.nn as nn
+    _TORCH_AVAILABLE = True
+    _BaseModule = nn.Module
+except ImportError:
+    torch = None
+    _TORCH_AVAILABLE = False
+    _BaseModule = object
+
+from typing import Tuple, Any
 
 
-class DKTModel(nn.Module):
+class DKTModel(_BaseModule):
     def __init__(self, num_skills: int, hidden_dim: int = 128, num_layers: int = 1):
+        if not _TORCH_AVAILABLE:
+            raise ImportError("PyTorch is not installed. Please install torch to use DKTModel: pip install torch")
         super(DKTModel, self).__init__()
         self.num_skills = num_skills
         self.hidden_dim = hidden_dim
@@ -25,7 +35,7 @@ class DKTModel(nn.Module):
         self.fc = nn.Linear(hidden_dim, num_skills)
         self.sigmoid = nn.Sigmoid()
 
-    def forward(self, x: torch.Tensor, hidden: Tuple[torch.Tensor, torch.Tensor] = None) -> Tuple[torch.Tensor, Tuple[torch.Tensor, torch.Tensor]]:
+    def forward(self, x: Any, hidden: Any = None) -> Tuple[Any, Any]:
         """
         x: Tensor of shape (batch_size, seq_len, input_dim)
         Returns:

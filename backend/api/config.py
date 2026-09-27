@@ -7,8 +7,8 @@ class Settings(BaseSettings):
     DEBUG: bool = True
     APP_PORT: int = 8000
 
-    # PostgreSQL
-    DATABASE_URL: str = "postgresql+asyncpg://biblio_user:biblio_password@localhost:5432/biblio_db"
+    # Database (defaults to local SQLite if PostgreSQL is not configured in .env)
+    DATABASE_URL: str = "sqlite+aiosqlite:///./biblio.db"
 
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"
