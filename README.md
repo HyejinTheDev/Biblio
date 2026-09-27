@@ -1,46 +1,49 @@
-# Biblio — Hệ Thống Đề Xuất Học Tập & Theo Vết Kiến Thức (Knowledge Tracing)
+---
+title: Biblio AI VinUni
+emoji: 🤖
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
 
-Biblio là nền tảng học tập thích ứng (Adaptive Learning Platform) tích hợp **Knowledge Tracing (BKT / DKT)**, **Knowledge Graph**, **RAG (Retrieval-Augmented Generation)** và **AI Agent** nhằm cá nhân hóa lộ trình học tập và tối ưu hóa lỗ hổng kiến thức cho học sinh.
+# Biblio — Hệ Thống Vượt Ải "AI Thực Chiến VinUni"
+
+Biblio là nền tảng học tập thích ứng (Adaptive Learning Platform) kết hợp **Gamified Adventure Map**, **Knowledge Tracing (BKT)**, và **Chương trình luyện thi AI Thực Chiến VinUni**.
 
 ---
 
-## 🌟 Kiến Trúc Tổng Quan
+## 🌟 Tính Năng Nổi Bật
 
-```text
-Biblio/
-├── backend/          # FastAPI App + AI Core (BKT, DKT, Knowledge Graph, RAG, Agent)
-├── frontend/         # React + TypeScript + Tailwind (Interactive Knowledge Graph)
-├── data/             # Knowledge graph & ngân hàng câu hỏi theo môn học
-├── monitoring/       # Prometheus & Grafana metrics
-└── docker-compose.yml# Quản lý PostgreSQL, Redis, Qdrant, Backend, Frontend
-```
+- **4 Giai Đoạn (Phases) — 40 Ải:** Bao phủ toàn diện từ Python idioms, NumPy Vectorization, Đại số tuyến tính, Gradient Calculus, PyTorch, Transformer đến GenAI/RAG.
+- **3 Cấp Độ Thử Thách:** Thường 🟢 (+50 EXP, 1 ⭐), Trung bình 🟡 (+100 EXP, 2 ⭐⭐), Địa ngục 🔴 (+250 EXP, 3 ⭐⭐⭐ - Phỏng vấn VinUni).
+- **Mô Hình BKT Chuẩn Mực:** Cập nhật xác suất nắm vững kiến thức $P(L_t)$ theo thời gian thực.
+- **Fullstack Single-Container:** FastAPI phục vụ đồng thời cả RESTful API và giao diện Web React Single-Page Application (SPA).
 
 ---
 
-## 🚀 Khởi Chạy Nhanh (Quick Start)
+## 🚀 Khởi Chạy Local
 
-### 1. Yêu cầu hệ thống
-- Docker & Docker Compose
-- Python 3.10+ (nếu chạy local)
-- Node.js 18+ (nếu chạy local frontend)
-
-### 2. Thiết lập môi trường
+### 1. Backend (FastAPI)
 ```bash
-cp .env.example .env
+cd backend
+py -m uvicorn api.main:app --reload --port 8000
 ```
 
-### 3. Chạy qua Docker Compose
+### 2. Frontend (React + Vite)
 ```bash
-docker-compose up -d --build
+cd frontend
+npm run dev
 ```
-- Frontend: `http://localhost:3000`
-- Backend API Docs: `http://localhost:8000/docs`
-- Qdrant Dashboard: `http://localhost:6333/dashboard`
 
 ---
 
-## 🔬 Thuật Toán & Module Cốt Lõi
-- **BKT (Bayesian Knowledge Tracing):** Tự cài đặt cập nhật xác suất nắm vững kiến thức ($P(L_t)$) sau từng câu trả lời.
-- **DKT (Deep Knowledge Tracing):** Mô hình hóa chuỗi bài tập qua thời gian bằng mạng nơ-ron tuần hoàn (LSTM/RNN).
-- **Knowledge Graph Query:** Thuật toán duyệt đồ thị xác định điểm tiên quyết (prerequisite) và đề xuất kỹ năng kế tiếp.
-- **AI Agent & Tool Calling:** Tự động điều phối giữa truy xuất tài liệu (RAG), ngân hàng câu hỏi và trạng thái học sinh.
+## 🌐 Triển Khai Lên Hugging Face Spaces
+
+1. Tạo một Space mới tại [Hugging Face Spaces](https://huggingface.co/new-space) với SDK là **Docker**.
+2. Thêm remote và đẩy code lên:
+```bash
+git remote add space https://huggingface.co/spaces/<YOUR_USERNAME>/<SPACE_NAME>
+git push space main
+```
